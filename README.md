@@ -6,7 +6,6 @@ Clone the repo and install the dependencies.
 
 ```bash
 git clone https://github.com/William-io/node-medicament-api.git
-cd the-example-app.nodejs
 ```
 
 ```bash
