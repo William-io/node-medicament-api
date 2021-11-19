@@ -13,6 +13,19 @@ exports.get = (req, res, next) => {
         });
 }
 
+exports.getBySlug = (req, res, next) => {
+    Drug
+        .find({
+            slug: req.params.slug,
+            active: true
+        }, 'product price slug tags')
+        .then(data => {
+            res.status(200).send({ data, message: 'Medicamentos listados com sucesso!' });
+        }).catch(e => {
+            res.status(400).send({ e, message: 'Erro ao buscar medicamentos!' });
+        });
+}
+
 exports.post = (req, res, next) => {
     var drug = new Drug(req.body);
     //Deu tudo certo??
