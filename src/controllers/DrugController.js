@@ -1,6 +1,18 @@
 'use strict';
+
+const mongoose = require('mongoose');
+const Drug = mongoose.model('Drug');
+
 exports.post = (req, res, next) => {
-    res.status(201).send(req.body);
+    var drug = new Drug(req.body);
+    //Deu tudo certo??
+    drug.save().then(x => {
+        res.status(201).send({ message: 'Medicamento cadastrado com sucesso!' });
+        //Deu algum erro??
+    }).catch(e => {
+        res.status(400).send({ message: 'Erro ao cadastrar medicamento!', data: e });
+    });
+
 };
 
 exports.put = (req, res, next) => {
