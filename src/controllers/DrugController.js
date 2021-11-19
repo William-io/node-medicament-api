@@ -3,6 +3,16 @@
 const mongoose = require('mongoose');
 const Drug = mongoose.model('Drug');
 
+exports.get = (req, res, next) => {
+    Drug
+        .find({})
+        .then(data => {
+            res.status(200).send({ data, message: 'Medicamentos listados com sucesso!' });
+        }).catch(e => {
+            res.status(400).send({ e, message: 'Erro ao buscar medicamentos!' });
+        });
+}
+
 exports.post = (req, res, next) => {
     var drug = new Drug(req.body);
     //Deu tudo certo??
