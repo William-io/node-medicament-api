@@ -12,6 +12,9 @@ const router = express.Router();
 mongoose.connect('mongodb+srv://william-io:root@ndstr.bgmwl.mongodb.net/ndstr?retryWrites=true&w=majority');
 
 const Drug = require('./models/drug');
+const Customer = require('./models/customer');
+const Order = require('./models/order');
+const Laboratory = require('./models/laboratory');
 
 //routes
 const indexRoute = require('./routes/index-route');
