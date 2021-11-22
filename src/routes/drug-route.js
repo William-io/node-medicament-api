@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router();
 
 //Faço a referencia ao meu controller
-const controller = require('../controllers/DrugController')
+const controller = require('../controllers/drug-controller')
 
 router.get('/', controller.get);
 router.get('/:slug', controller.getBySlug);

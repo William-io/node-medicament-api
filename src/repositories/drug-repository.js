@@ -3,43 +3,47 @@
 const mongoose = require('mongoose');
 const Drug = mongoose.model('Drug');
 
-exports.get = () => {
-    return Drug
-        .find({
-            active: true
-        }, ' ') //product price slug tags
+
+exports.get = async () => {
+    const res = await Drug.find({
+        active: true
+    }, ' '); //product price slug tags
+    return res;
 }
 
-exports.getBySlug = (slug) => {
-    return Drug
-        .find({
+exports.getBySlug = async (slug) => {
+    const res = await Drug
+        .findOne({
             slug: slug,
             active: true
-        }, 'product price slug tags')
+        }, 'product price slug tags');
+    return res;
 
 }
 
-exports.getById = (id) => {
-    return Drug
+exports.getById = async (id) => {
+    const res = await Drug
         .findById(id);
+    return res;
 }
 
-exports.getByTag = (tag) => {
-    return Drug
+exports.getByTag = async (tag) => {
+    const res = await Drug
         .find({
             tags: tag,
             active: true
-        }, 'product price slug tags')
+        }, 'product price slug tags');
+    return res;
 
 }
 
-exports.create = (data) => {
+exports.create = async (data) => {
     var drug = new Drug(data);
-    return drug.save();
+    await drug.save();
 }
 
-exports.update = (id, data) => {
-    return Drug
+exports.update = async (id, data) => {
+    await Drug
         .findByIdAndUpdate(id, {
             $set: {
                 product: data.product,
@@ -50,7 +54,7 @@ exports.update = (id, data) => {
         });
 }
 
-exports.delete = (id) => {
+exports.delete = async (id) => {
     return Drug.findOneAndRemove(id);
 }
 
