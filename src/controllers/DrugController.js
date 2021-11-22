@@ -2,6 +2,8 @@
 
 const mongoose = require('mongoose');
 const Drug = mongoose.model('Drug');
+//Import fluent-validator
+const ValidationContract = require('../validators/fluent-validator')
 
 exports.get = (req, res, next) => {
     Drug
@@ -52,6 +54,19 @@ exports.getByTag = (req, res, next) => {
 }
 
 exports.post = (req, res, next) => {
+    //2. Instancio o ValidationContract onde inicializo o contrato de validação
+    let contract = new ValidationContract();
+    //3. Adiciono as validações, dizendo que é preciso no minimo 3 caracteres por exemplo
+    contract.hasMinLen(req.body.product, 3, 'Titulo do produto deve está no minimo com 3 caracteres!'); //OK! ==Dipirona
+    contract.hasMinLen(req.body.registration, 13, 'N° do registro deve conter 13 caracteres!'); //OK! == 1018003900035
+    contract.hasMinLen(req.body.slug, 3, 'Slug deve conter no minimo com 3 caracteres!');//OK! == dor-nas-costas
+
+    //4. Se os dados estiver invalido vou retornar um erro 400 bad request;
+    if (!contract.isValid()) {
+        res.status(400).send(contract.errors()).end();
+        return;
+    }
+
     var drug = new Drug(req.body);
     drug.save().then(x => {
         res.status(201).send({ message: 'Medicamento cadastrado com sucesso!' });
