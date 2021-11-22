@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const schema = new Schema({
-    customer: { //1. Vou referenciar o customer utilizando ref: para utilizar uma coleção
+    customer: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Customer'
     },
@@ -15,15 +15,15 @@ const schema = new Schema({
     createDate: {
         type: Date,
         required: true,
-        default: Date.now //2. Passo date.now onde todo pedido criado vai ser gerada uma data de criação
+        default: Date.now
     },
-    status: { //3. Passo o status do pedido
+    status: {
         type: String,
         required: true,
-        enum: ['created', 'paid', 'shipped', 'canceled', 'done'], //4. Criado, pago, enviado, cancelado, concluido
+        enum: ['created', 'paid', 'shipped', 'canceled', 'done'],
         default: 'created'
     },
-    items: [{ //5. Passo o array de items e faço referencia ao customer
+    items: [{
         quantity: {
             type: Number,
             required: true,
