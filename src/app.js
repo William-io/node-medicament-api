@@ -20,6 +20,7 @@ const Order = require('./models/order');
 const indexRoute = require('./routes/index-route');
 const drugRoute = require('./routes/drug-route');
 const customerRoute = require('./routes/customer-route');
+const orderRoute = require('./routes/order-route');
 
 app.use(bodyParser.json());
 //id of the drug type Guid
@@ -30,5 +31,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/', indexRoute);
 app.use('/drugs', drugRoute);
 app.use('/customers', customerRoute);
+app.use('/orders', orderRoute);
 
 module.exports = app; 
