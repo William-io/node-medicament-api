@@ -4,12 +4,13 @@ const express = require('express');
 const bodyParser = require('body-parser');
 //1.1 Connection to mongodb
 const mongoose = require('mongoose');
+const config = require('./config');
 
 const app = express();
 const router = express.Router();
 
 //1.2 Connection to mongodb
-mongoose.connect('mongodb+srv://william-io:root@ndstr.bgmwl.mongodb.net/ndstr?retryWrites=true&w=majority');
+mongoose.connect(config.connectionString);
 //models
 const Drug = require('./models/drug');
 const Customer = require('./models/customer');
