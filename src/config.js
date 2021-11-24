@@ -4,6 +4,6 @@ global.EMAIL_TMPL = 'Olá, <strong>{0}</strong>, seja bem vindo à Node Medicame
 
 module.exports = {
     connectionString: 'mongodb+srv://william-io:root@ndstr.bgmwl.mongodb.net/ndstr?retryWrites=true&w=majority',
-    sendgridKey: 'CHAVE',
+    sendgridKey: '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',
     containerConnectionString: 'CONNECTION STRING'
 }
